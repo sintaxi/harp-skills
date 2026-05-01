@@ -1,0 +1,43 @@
+{
+  "skill_name": "harp",
+  "evals": [
+    {
+      "id": 1,
+      "name": "refactor-into-layout-partials",
+      "prompt": "I've got three HTML pages and the header/footer is duplicated across all of them. Can you turn this into a Harp project so the shared chrome lives in one place? The three HTML files are in the inputs/ directory. Output the Harp project to the outputs/ directory.",
+      "expected_output": "A Harp project under outputs/ with templates in a single source directory (no extra parent + public/ wrapper unless mimicking a legacy project), a `_layout.ejs` containing shared chrome and `<%- yield %>`, partials for repeated chunks (header/footer/nav), and three page files (index, about, contact) containing only their unique body content. URLs should still resolve to /, /about, /contact. May add `_harp.json` for globals (author, email, year) but it's not required.",
+      "files": [
+        "evals/inputs/eval-1-refactor-into-layout-partials/index.html",
+        "evals/inputs/eval-1-refactor-into-layout-partials/about.html",
+        "evals/inputs/eval-1-refactor-into-layout-partials/contact.html"
+      ],
+      "assertions": []
+    },
+    {
+      "id": 2,
+      "name": "article-index-iteration",
+      "prompt": "I have a Harp project in the inputs/ directory with five markdown blog posts in articles/. Add an index page at /articles/ that lists all posts. Sort by date, newest first. Show the title, date, and excerpt for each, and link to the post. Copy the existing project to outputs/ and add the index page there.",
+      "expected_output": "Project copied to outputs/ with a new `articles/index.ejs` that iterates over `public.articles._data`, sorts by date descending, and renders title/date/excerpt with a link to /articles/<slug> for each post. Wrapped by the inherited `_layout.ejs`. Should not modify existing posts, `_data.json`, or `_harp.json`. The project shape should be preserved (modern `_harp.json` form, source files at the served root — no `public/` subdirectory).",
+      "files": [
+        "evals/inputs/eval-2-article-index-iteration/_harp.json",
+        "evals/inputs/eval-2-article-index-iteration/_layout.ejs",
+        "evals/inputs/eval-2-article-index-iteration/index.ejs",
+        "evals/inputs/eval-2-article-index-iteration/articles/_data.json",
+        "evals/inputs/eval-2-article-index-iteration/articles/hello-world.md",
+        "evals/inputs/eval-2-article-index-iteration/articles/on-rust.md",
+        "evals/inputs/eval-2-article-index-iteration/articles/travel-brazil.md",
+        "evals/inputs/eval-2-article-index-iteration/articles/meta-blogging.md",
+        "evals/inputs/eval-2-article-index-iteration/articles/coffee-routine.md"
+      ],
+      "assertions": []
+    },
+    {
+      "id": 3,
+      "name": "scaffold-portfolio",
+      "prompt": "Set up a new Harp project for my photography portfolio in the outputs/ directory. I want a homepage, an about page, and a /work/ section with three case studies (give them placeholder titles and short blurbs). Put my name 'Brock' and email 'brock@sintaxi.com' in globals so I can reference them anywhere on the site.",
+      "expected_output": "A fresh Harp project at outputs/ in the modern shape: a single source directory containing the templates plus a `_harp.json` (since globals are needed). No `public/` subdirectory. Includes a `_layout.ejs` that uses globals (e.g. footer with name/email), an index page, an about page, and a `work/` directory with `_data.json` mapping three slugs to titles/blurbs plus a case-study file per slug. Layout references globals; work index page iterates over `public.work._data`.",
+      "files": [],
+      "assertions": []
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "hello-world": {
+    "title": "Hello World",
+    "date": "2026-01-12",
+    "excerpt": "The obligatory first post — a quick note on why I started writing here again."
+  },
+  "on-rust": {
+    "title": "Notes from a month with Rust",
+    "date": "2026-02-04",
+    "excerpt": "Spent four weeks rewriting a small CLI tool in Rust. Here's what stuck and what didn't."
+  },
+  "travel-brazil": {
+    "title": "Three weeks in Brazil",
+    "date": "2026-03-19",
+    "excerpt": "São Paulo, Rio, and a long bus ride to Paraty. Sketches and impressions from the trip."
+  },
+  "meta-blogging": {
+    "title": "On writing on the internet again",
+    "date": "2026-04-02",
+    "excerpt": "Why I'm slowly walking back from social media and rebuilding the habit of posting on my own site."
+  },
+  "coffee-routine": {
+    "title": "My current coffee routine",
+    "date": "2026-04-22",
+    "excerpt": "An aeropress, a small grinder, and a stubborn refusal to buy more gear. So far, so good."
+  }
+}

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= typeof title !== 'undefined' ? title + ' · ' : '' %><%= siteTitle %></title>
+  <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+  <header>
+    <a class="logo" href="/"><%= siteTitle %></a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/articles">Articles</a>
+    </nav>
+  </header>
+  <main>
+    <%- yield %>
+  </main>
+  <footer>
+    <p>&copy; 2026 <%= author %></p>
+  </footer>
+</body>
+</html>
