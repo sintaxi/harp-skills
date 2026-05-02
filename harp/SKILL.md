@@ -222,7 +222,7 @@ Use `globals` for things that are genuinely site-wide and rarely change between 
 }
 ```
 
-Inside `articles/hello-world.md`, `<%= title %>` resolves to `"Hello World"`. (Yes, `.md` files can read `_data.json` variables — they just can't call `partial()`.)
+Inside `articles/hello-world.ejs`, `<%= title %>` resolves to `"Hello World"`. The same applies to `.jade`. For `.md` pages, see "Markdown handling" below — the data is attached to the page's render context (and reachable from the wrapping layout) but the markdown body itself can't interpolate variables.
 
 The whole map is also reachable from any template as `public.articles._data`. The `public` namespace always wraps the served-root data tree regardless of whether your project has a literal `public/` directory or not — that's how an index page enumerates the entries.
 
@@ -332,10 +332,10 @@ The same partial can be used everywhere — `current` makes it self-aware.
 Markdown files:
 
 - Are wrapped by the nearest parent `_layout.ejs` like any other page.
-- Can read variables from `_data.json` and `_harp.json` globals (e.g., `<%= title %>` works at the top of an `.md` file).
-- **Cannot** call `partial()` inside the body — the markdown processor only renders HTML, it doesn't execute template code.
+- Have their `_data.json` entry attached to the render context — but the **markdown processor doesn't substitute variables**. `<%= title %>` inside a `.md` body appears as literal text. The values are reachable from the wrapping layout (which is a real EJS template) and from any other template via `public.articles._data`, which is the usual way you'd use them.
+- **Cannot** call `partial()`, use `<% if %>`/`<% for %>`, or interpolate variables inside the body — the markdown processor (`marked`) only renders HTML, it doesn't execute template code. Only `.ejs` and `.jade` execute template logic.
 
-A common workflow: keep prose in `.md` (so authors can write Markdown), and put the surrounding structure (hero, sidebar, related-articles list) in `_layout.ejs` for that directory.
+A common workflow: keep prose in `.md` (so authors can write plain Markdown), and put all the chrome — `<title>` from `_data.json`, navigation, related-post lists, etc. — in the `_layout.ejs` that wraps the page. If you need template logic inside the body, write the page as `.ejs` instead.
 
 ## Stylesheets and JavaScript
 
